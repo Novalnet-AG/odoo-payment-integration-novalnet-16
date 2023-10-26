@@ -4,7 +4,7 @@
     'category': 'Accounting/Payment Providers',
     'summary': "A payment service provider covering several payment.",
     'author': 'Novalnet',
-    'website': 'https://www.novalnet.de',
+    'website': 'https://www.novalnet.com',
     'description': '''
 	All-in-one-solution for worldwide payments and services on a single platform. Accept 200+ payment methods in 150+ currencies globally in a highly secure, state-of-the-art environment supported by AI-powered risk management for SMEs & large enterprises. Novalnet hosts multiple value-added features & services including recurring payments, debt collection, automated marketplace. Visit www.novalnet.de for more details.
     ''',
