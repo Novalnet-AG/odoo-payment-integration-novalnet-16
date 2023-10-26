@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Novalnet Provider Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group attrs="{'invisible': [('code', '!=', 'novalnet')]}">
+			                 <field name="novalnet_public_key" string="Product activation key" attrs="{'required': [('code', '=', 'novalnet'), ('state', '!=', 'disabled')]}" password="True"/>
+                           <field name="hide_novalnet_tariff" invisible="1"/>
+                           <field name="novalnet_key_password" string="Payment access key" attrs="{'required': [('code', '=', 'novalnet'), ('state', '!=', 'disabled')]}" password="True"/>
+                           <field name="novalnet_client_key" invisible="1"/>
+                           <label string=" " for="hide_novalnet_tariff"> </label>
+                           <small class="text-muted" >
+                   						<b><button name="get_novalnet_access_details" icon="fa-arrow-right" type="object" string="Get access details" class="btn-link"/></b>
+                   					</small>
+
+                            <field name="novalnet_tariff_selection" string="Select Tariff ID " attrs="{'invisible': [('hide_novalnet_tariff', '=', False)]}"  options="{'reload_on_button': True}"/>
+                </group>
+            </group>
+            <group name="provider_config" position="after" >
+
+                <group string="Set Notification/Webhook URL" name="novalnet_webhook_configuration" attrs="{'invisible': [('code', '!=', 'novalnet')]}">
+                       <field name="novalnet_webhook_url"/>
+                       <field name="novalnet_webhook_testing"/>
+                       <field name="novalnet_webhook_email"/>
+                </group>
+
+                <group string="Novalnet payment methods" name="novalnet_payment_method" attrs="{'invisible': [('code', '!=', 'novalnet')]}">
+                  <field name="novalnet_payment_methods_ids" attrs="{'invisible': [('hide_novalnet_tariff', '=', False)]}">
+                    <tree create="0">
+                      <field name="sequence" widget="handle"/>
+                      <field name="name" />
+                      <field name="payment_code" optional="hide"/>
+                      <field name="payment_icon_ids" widget="many2many_tags"/>
+                      <field name="active" invisible="1"/>
+                      <field name="shop_active_status" widget="boolean_toggle"/>
+                      <field name="country_ids" widget="many2many_tags"/>
+                    </tree>
+                  </field>
+                </group>
+			     </group>
+        </field>
+    </record>
+
+</odoo>

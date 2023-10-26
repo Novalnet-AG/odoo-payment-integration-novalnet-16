@@ -1,0 +1,1153 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_novalnet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-29 05:27+0000\n"
+"PO-Revision-Date: 2022-12-29 21:02+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_bank_account
+msgid " Bank details to which customer has to transfer the transaction amount "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_transaction_amount_status_id
+msgid " Novalnet transaction amount status "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:mail.template,subject:payment_novalnet.novalnet_callback_notification
+msgid "${object.subject}"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_provider.py:0
+#, python-format
+msgid "'While notifying some data has been changed. The hash check failed"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_provider.py:0
+#, python-format
+msgid "'While notifying some data has been changed. The hash validation failed"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:mail.template,body_html:payment_novalnet.novalnet_callback_notification
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
+"16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; "
+"color: #454748; width: 100%; border-collapse:separate;\"><tr><td align="
+"\"center\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width="
+"\"590\" style=\"padding: 16px; background-color: white; color: #454748; "
+"border-collapse:separate;\">\n"
+"            <tbody>\n"
+"                <!-- HEADER -->\n"
+"                <tr>\n"
+"                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing="
+"\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; "
+"padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                            <tr>\n"
+"                                <td valign=\"middle\">\n"
+"                                      <t t-set=\"company\" t-value=\"object."
+"company_id or object.user_id.company_id or user.company_id\"/>\n"
+"                                      <span style=\"font-size: 20px; font-"
+"weight: bold;\">\n"
+"                                        <t t-out=\"object.reference\"/>\n"
+"                                      </span>\n"
+"                                  </td>\n"
+"                              </tr>\n"
+"                            <tr><td colspan=\"2\" style=\"text-align:center;"
+"\">\n"
+"                              <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                            </td></tr>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"                <!-- CONTENT -->\n"
+"                <tr>\n"
+"                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing="
+"\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; "
+"padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                            <tr><td valign=\"top\" style=\"font-size: 13px;"
+"\">\n"
+"                              <t t-out=\"ctx.get('comments')\"/>\n"
+"                            </td></tr>\n"
+"                            <tr><td style=\"text-align:center;\">\n"
+"                              <hr width=\"100%\" style=\"background-color:"
+"rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;"
+"min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                            </td></tr>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"                <!-- FOOTER -->\n"
+"                <tr>\n"
+"                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing="
+"\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-"
+"size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                            <tr><td valign=\"middle\" align=\"left\">\n"
+"                              <t t-out=\"company.name\"/>\n"
+"                            </td></tr>\n"
+"                            <tr><td valign=\"middle\" align=\"left\" style="
+"\"opacity: 0.7;\">\n"
+"                                <t t-out=\"company.phone\"/>\n"
+"                                <t t-if=\"company.email\">\n"
+"                                  | <a style=\"text-decoration:none; color: "
+"#454748;\"><t t-out=\"company.email\"/></a>\n"
+"                                </t>\n"
+"                                <t t-if=\"company.website\">\n"
+"                                  | <a style=\"text-decoration:none; color: "
+"#454748;\"><t t-out=\"company.website\"/></a>\n"
+"                                </t>\n"
+"                            </td></tr>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </tbody>\n"
+"            </table>\n"
+"            </td></tr>\n"
+"            </table>\n"
+"      \t  "
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>Account holder : </b>"
+msgstr "<b>Kontoinhaber: </b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>BANK :</b>"
+msgstr "<b>BANK :</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>BIC :</b>"
+msgstr "<b>BIC :</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>IBAN :</b>"
+msgstr "<b>BIC :</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>Payment Reference-1 :</b>"
+msgstr "<b>Verwendungszweck 1:</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>Payment Reference-2 :</b>"
+msgstr "<b>Verwendungszweck 2:</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<b>Place :</b>"
+msgstr "<b>Ort :</b>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_sepa
+msgid "<small><b>BIC</b></small>"
+msgstr "<small><b>BIC</b></small>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_invoice
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+msgid "<small><b>D.O.B</b></small>"
+msgstr "<small><b>D.O.B</b></small>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_sepa
+msgid "<small><b>IBAN</b></small>"
+msgstr "<small><b>IBAN</b></small>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "<span style=\"font-weight:bold;\">Payment type:</span>"
+msgstr "<span style=\"font-weight:bold;\">Die Zahlungsart:</span>"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_confirmation
+msgid ""
+"<span>Unfortunately your order can not be confirmed as the amount of your "
+"payment does not match the amount of your cart.\n"
+"                    Please contact the responsible of the shop for more "
+"information.</span>"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__account_holder
+msgid "Account holder name"
+msgstr "Name des Kontoinhabers"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_webhook_testing
+msgid "Allow manual testing of notification/webhook URL"
+msgstr "Manuelles Testen der Benachrichtigungs- / Webhook-URL erlauben"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__bic
+msgid "BIC"
+msgstr "BIC"
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__chargeback
+msgid "CHARGEBACK"
+msgstr "CHARGEBACK"
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__credit
+msgid "CREDIT"
+msgstr "Gutschrift"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__is_done
+msgid "Callback Done"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Callback received for event type %s but communication failure not found"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__capture_manually
+msgid "Capture manually from shop"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid ""
+"Chargeback executed successfully for the TID: %(parent_tid)s amount: "
+"%(amount)s on %(datetime)s . The subsequent TID: %(child_tid)s"
+msgstr ""
+"Chargeback erfolgreich importiert für die TID: %(parent_tid)s Betrag: "
+"%(amount)s am %(datetime)s. Uhr. TID der Folgebuchung: %(child_tid)s"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__city
+msgid "City of the store"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_client_key
+msgid "Client Key"
+msgstr "Schlüsselkunde"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__code
+msgid "Code"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__company_id
+msgid "Company"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_provider.py:0
+#, python-format
+msgid "Could not establish the connection to the API."
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Could not find Novalnet parent transaction "
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Could not find payment please try any other payment "
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/controllers/main.py:0
+#, python-format
+msgid "Could not found order number"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_provider.py:0
+#, python-format
+msgid "Could not found tariff information"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/controllers/main.py:0
+#, python-format
+msgid "Could not found transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Could not initiate callback"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Could not redirect to acquirer, please try again later"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__country_ids
+msgid "Country Availability"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__country_code
+msgid "Country Code of the store"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__create_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__create_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__create_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__create_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__create_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__create_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__create_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__create_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__create_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__create_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid ""
+"Credit has been successfully received for the TID: %(parent_tid)s with "
+"amount on %(amount)s. Please refer PAID order details in our Novalnet Admin "
+"Portal for the TID: %(child_tid)s"
+msgstr ""
+"Die Gutschrift für die TID ist erfolgreich eingegangen: %(parent_tid)s mit "
+"Betrag am %(amount)s.  Bitte entnehmen Sie die TID den Einzelheiten der "
+"Bestellung bei BEZAHLT in unserem Novalnet Adminportal: %(child_tid)s"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_invoice
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+msgid "DD.MM.YYYY"
+msgstr "TT.MM.JJJJ"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_sepa
+msgid "DE00 0000 0000 0000 0000 00"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_novalnet_payment_method__display_as
+msgid "Description of the novalnet payment types for customers"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__display_name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__display_name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__display_name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__display_name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__display_name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__display_as
+msgid "Displayed as"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_confirmation
+msgid "Edit"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__enforce_3d
+msgid "Enforce 3D Secure payments outside the EU"
+msgstr "3D-Secure-Zahlungen außerhalb der EU erzwingen"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Entity:"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__event_type
+msgid "Event Type"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.flow_other_providers_check_out_payments
+msgid "Fees"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Get access details"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__hide_novalnet_tariff
+msgid "Hide Novalnet Tariff"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__iban
+msgid "IBAN"
+msgstr "IBAN"
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "IBAN validation failed"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__id
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__id
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__id
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__id
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__id
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__id
+msgid "ID"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Invalid transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback____last_update
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method____last_update
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank____last_update
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store____last_update
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff____last_update
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__write_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__write_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__write_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__write_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__write_uid
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__write_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__write_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__write_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__write_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__write_date
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_provider.py:0
+#, python-format
+msgid "Mandatory fields missing"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "Missing BIC"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "Missing DOB"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "Missing Iban"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__tid
+msgid "NN Transaction ID "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__parent_tid
+msgid "NN Transaction ID of parent transaction "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__name
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__name
+msgid "Name"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__bank_name
+msgid "Name of the bank that need to be transferred"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "No transaction found matching reference %s."
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_webhook_url
+msgid "Notification / Webhook URL"
+msgstr "Benachrichtigungs- / Webhook-URL"
+
+#. module: payment_novalnet
+#: model:payment.provider,display_as:payment_novalnet.payment_provider_novalnet
+#: model:payment.provider,name:payment_novalnet.payment_provider_novalnet
+msgid "Novalnet"
+msgstr "Novalnet"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_method_form
+msgid "Novalnet Payment Method"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_payment_methods_ids
+msgid "Novalnet Payment Methods"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_payment_transaction_bank
+msgid "Novalnet bank details for a transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_callback
+#: model:mail.template,name:payment_novalnet.novalnet_callback_notification
+msgid "Novalnet callback"
+msgstr "Novalnet-Rückruf"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_due_date
+msgid ""
+"Novalnet due date for Invoice, Prepayment, DIRECT_DEBIT_SEPA, "
+"GUARANTEED_INVOICE, GUARANTEED_DIRECT_DEBIT_SEPA, cashpayment"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:account.payment.term,name:payment_novalnet.novalnet_b2b_invoice_account_payment_term_30days
+msgid "Novalnet invoice payment due - 30 Days "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:account.payment.term,name:payment_novalnet.novalnet_invoice_account_payment_term_14days
+msgid "Novalnet invoice payment due Days"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:account.payment.term,note:payment_novalnet.novalnet_invoice_account_payment_term_14days
+msgid "Novalnet invoice payment terms: 14 Days"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:account.payment.term,note:payment_novalnet.novalnet_b2b_invoice_account_payment_term_30days
+msgid "Novalnet invoice payment terms: 30 Days"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_payment_method
+msgid "Novalnet payment method"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_token__novalnet_payment_method
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_payment_method
+msgid "Novalnet payment method "
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Novalnet payment methods"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:account.payment.term,name:payment_novalnet.novalnet_sepa_account_payment_term_2days
+msgid "Novalnet sepa due Days"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:account.payment.term,note:payment_novalnet.novalnet_sepa_account_payment_term_2days
+msgid "Novalnet sepa payment terms: 2 Days"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_payment_transaction_store
+msgid "Novalnet store details for a transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_tariff
+msgid "Novalnet tariff"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Novalnet transaction ID:"
+msgstr "Novalnet-Transaktions-ID:"
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_novalnet_transaction_amount_status
+msgid "Novalnet transaction amount status"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_callback_ids
+msgid "Novalnet transaction callback details"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_payment_method__flow__direct
+msgid "Online direct payment"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_payment_method__flow__redirect
+msgid "Online payment with redirection"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__flow
+msgid "Operation"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/controllers/main.py:0
+#, python-format
+msgid "Order number not found"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__payment
+msgid "PAYMENT"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__paid_amount
+msgid "Paid Amount"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Partner Payment Reference :"
+msgstr "Partner-Zahlungsreferenz:"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_method_form
+msgid "Payment Name"
+msgstr "Name der Zahlungsart"
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_payment_provider
+msgid "Payment Provider"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__payment_term_id
+msgid "Payment Terms"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_payment_token
+msgid "Payment Token"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model,name:payment_novalnet.model_payment_transaction
+msgid "Payment Transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_key_password
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Payment access key"
+msgstr "Zahlungs-Zugriffsschlüssel"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__payment_code
+msgid "Payment code"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_sale_order_portal_content
+msgid "Payment information"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__transaction_id
+msgid "Payment transaction"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_bank__bank_place
+msgid "Place of the bank that need to be transferred"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Please transfer the amount of"
+msgstr "Bitte überweisen Sie den Betrag von"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid ""
+"Please use any of the following payment references when transferring the "
+"amount. This is necessary to match it with your corresponding order"
+msgstr ""
+"Bitte verwenden Sie einen der unten angegebenen Verwendungszwecke für die "
+"Überweisung. Nur so kann Ihr Geldeingang Ihrer Bestellung zugeordnet werden"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Please use the following payment reference details to pay the amount of"
+msgstr "Bitte verwenden Sie die folgende Zahlungsreferenz, um den Betrag von"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_public_key
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Product activation key"
+msgstr "Produktaktivierungsschlüssel"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_transaction_amount_status__refund_amount
+msgid "Refund Amount"
+msgstr "Rückerstattungsbetrag"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid ""
+"Refund has been initiated for the TID: %(parent_tid)s with the amount "
+"%(amount)s. New TID:%(child_tid)s for the refunded amount"
+msgstr ""
+"Die Rückerstattung für die TID: %(parent_tid)s mit dem Betrag %(amount)s "
+"wurde veranlasst. Die neue TID für den erstatteten Betrag lautet: "
+"%(child_tid)s"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid ""
+"Refund has been initiated for the TID: %(parent_tid)s with the amount "
+"%(amount)s. The subsequent TID:%(child_tid)s for the refunded amount"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid ""
+"Refund has been initiated for the TID:%(parent_tid)s with the amount "
+"%(amount)s"
+msgstr ""
+"Die Rückerstattung für die TID: %(parent_tid)s mit dem Betrag %(amount)s"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_tokenize
+msgid "Save my payment details"
+msgstr "Speichern für zukünftige Einkäufe"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Select Tariff ID"
+msgstr "Auswahl der Tarif-ID"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_tariff_selection
+msgid "Select Tariff ID "
+msgstr "Auswahl der Tarif-ID "
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_payment_provider__novalnet_tariff_selection
+msgid ""
+"Select a Tariff ID to match the preferred tariff plan you created at the "
+"Novalnet Admin Portal for this project"
+msgstr ""
+"Wählen Sie eine Tarif-ID, die dem bevorzugten Tarifplan entspricht, den Sie "
+"im Novalnet Admin-Portal für dieses Projekt erstellt haben"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_provider__novalnet_webhook_email
+msgid "Send emails to"
+msgstr "E-Mails senden an"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "Server Error"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_multibanco_service_supplier_id
+msgid "Service supplier ID from Multibanco"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.payment_provider_form
+msgid "Set Notification/Webhook URL"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Slip expiry date :"
+msgstr "Verfallsdatum des Zahlscheins:"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__shop_active_status
+msgid "Status on shop"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_nearest_store_ids
+msgid ""
+"Store details to which customer has to transfer the transaction amount, "
+"Applies only for cashpayment"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__transaction_id
+msgid ""
+"Store details to which customer has to transfer the transaction amount, "
+"Applies only for cashpayment "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__store_name
+msgid "Store name"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "Store(s) near you"
+msgstr "Barzahlen-Partnerfilialen in Ihrer Nähe"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__street
+msgid "Street"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__payment_icon_ids
+msgid "Supported Payment Icons"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__transaction_cancel
+msgid "TRANSACTION_CANCEL"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__transaction_capture
+msgid "TRANSACTION_CAPTURE"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__transaction_refund
+msgid "TRANSACTION_REFUND"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__novalnet_callback__event_type__transaction_update
+msgid "TRANSACTION_UPDATE"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__tariff_id
+msgid "Tariff"
+msgstr "Tarif"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_tariff__tariff_type
+msgid "Tariff Type"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.flow_other_providers_check_out_payments
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_methods
+msgid "Test Mode"
+msgstr "Testmodus"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_multibanco_payment_reference
+msgid ""
+"The payment reference for the Multibanco payment type. Using this reference, "
+"the customer pays in online portal or in the Multibanco ATM to complete the "
+"purchase"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_payment_provider__code
+msgid "The technical code of this payment provider."
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "The transaction has been canceled on %(datetime)s "
+msgstr "Die Transaktion wurde am %(datetime)s Uhr storniert "
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "The transaction has been confirmed on %(datetime)s "
+msgstr "Die Buchung wurde am %(datetime)s Uhr bestätigt "
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid "The transaction has been updated with a new due date"
+msgstr "Die Transaktion wurde aktualisiert. Neues Fälligkeitsdatum"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid "The transaction has been updated with amount and due date"
+msgstr "Die Transaktion wurde aktualisiert. Neues Fälligkeitsdatum"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid ""
+"Transaction amount %(amount)s has been updated successfully on %(datetime)s"
+msgstr ""
+"Der Transaktionsbetrag %(amount)s wurde am %(datetime)s erfolgreich "
+"aktualisiert"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid ""
+"Transaction initiated with %(provider_name)s payment type %(payment_type)s "
+"for %(ref)s."
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_invoice_ref
+msgid "Transaction reference for invoice payment"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_payment_transaction__novalnet_txn_secret
+msgid ""
+"Transaction secret is a temporary identifier for the payment types with the "
+"redirect flow and it travels across the transaction, useful in verifying the "
+"payment result"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/novalnet_callback.py:0
+#, python-format
+msgid ""
+"Transaction updated successfully for the TID: %(parent_tid)s with the amount "
+"%(amount)s on %(datetime)s "
+msgstr ""
+"Transaktion mit TID: %(parent_tid)s und Betrag %(amount)s wurde am "
+"%(datetime)s erfolgreich aktualisiert. "
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "Unauthorized request from IP %s"
+msgstr "Unauthorized request from IP %s"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/controllers/main.py:0
+#, python-format
+msgid "Unknown error occured please try after some time"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.flow_other_providers_check_out_payments
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_methods
+msgid "Unpublished"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "ValidationError"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "We are not able to process your payment."
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_novalnet_callback__is_done
+msgid "Whether the callback has already been executed"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_guranteed_sepa
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_sepa
+msgid "XXXX XX XX XXX"
+msgstr ""
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/models/payment_transaction.py:0
+#, python-format
+msgid "You selected the following demo payment status: %s"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_confirmation
+#: model_terms:payment.provider,auth_msg:payment_novalnet.payment_provider_novalnet
+msgid "Your payment has been authorized."
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:payment.provider,cancel_msg:payment_novalnet.payment_provider_novalnet
+msgid "Your payment has been cancelled."
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:payment.provider,pending_msg:payment_novalnet.payment_provider_novalnet
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:payment.provider,done_msg:payment_novalnet.payment_provider_novalnet
+msgid "Your payment has been successfully processed. Thank you!"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_payment_provider__novalnet_public_key
+msgid ""
+"Your product activation key is a unique token for merchant authentication "
+"and payment processing. "
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,help:payment_novalnet.field_payment_provider__novalnet_key_password
+msgid ""
+"Your secret key used to encrypt the data to avoid user manipulation and "
+"fraud."
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "at a Multibanco ATM or through your internet banking"
+msgstr ""
+"an einem Multibanco-Geldautomaten oder über Ihr Onlinebanking zu bezahlen"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__callback_json
+msgid "callback reqest from novalnet"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_callback__check_sum
+msgid "checksum"
+msgstr ""
+
+#. module: payment_novalnet
+#. openerp-web
+#: code:addons/payment_novalnet/static/src/js/payment_form.js:0
+#, python-format
+msgid "error_message"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields.selection,name:payment_novalnet.selection__payment_provider__code__novalnet
+msgid "novalnet"
+msgstr "novalnet"
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "on or before"
+msgstr "spätestens bis zum"
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_method__provider_id
+msgid "provider"
+msgstr ""
+
+#. module: payment_novalnet
+#: model_terms:ir.ui.view,arch_db:payment_novalnet.novalnet_payment_information
+msgid "to the following account"
+msgstr "auf das folgende Konto"
+
+#. module: payment_novalnet
+#: code:addons/payment_novalnet/controllers/main.py:0
+#, python-format
+msgid "webhook necessary information not found"
+msgstr ""
+
+#. module: payment_novalnet
+#: model:ir.model.fields,field_description:payment_novalnet.field_novalnet_payment_transaction_store__zip
+msgid "zip"
+msgstr ""

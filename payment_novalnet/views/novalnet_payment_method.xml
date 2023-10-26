@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="novalnet_payment_method_form" model="ir.ui.view">
+        <field name="name">novalnet.payment.method.form</field>
+        <field name="model">novalnet.payment.method</field>
+        <field name="arch" type="xml">
+            <form string="Novalnet Payment Method">
+              <sheet>
+                <group>
+                  <field name="name" string="Payment Name"/>
+                  <field name="display_as"/>
+                  <field name="description" widget="html"/>
+                  <field name="sequence"/>
+                  <field name="payment_icon_ids" widget="many2many_tags"/>
+                  <field name="payment_code"/>
+                  <field name="active" invisible="1"/>
+                  <field name="flow" invisible="1"/>
+                  <field name="shop_active_status"/>
+                  <field name="capture_manually" attrs="{'invisible': [('payment_code', '!=', 'CREDITCARD'),('payment_code', '!=', 'PAYPAL'),('payment_code', '!=', 'INVOICE'),('payment_code', '!=', 'GUARANTEED_INVOICE'),('payment_code', '!=', 'DIRECT_DEBIT_SEPA'),('payment_code', '!=', 'GUARANTEED_DIRECT_DEBIT_SEPA')]}"/>
+                  <field name="enforce_3d" attrs="{'invisible': [('payment_code', '!=', 'CREDITCARD')]}"/>
+                  <field name="payment_term_id" attrs="{'invisible': [('payment_code', '!=', 'INVOICE'),('payment_code', '!=', 'PREPAYMENT'),('payment_code', '!=', 'DIRECT_DEBIT_SEPA'),('payment_code', '!=', 'CASHPAYMENT')]}" />
+                  <field name="country_ids" widget="many2many_tags" optional="hide"/>
+                  <field name="company_id"/>
+                  <field name="journal_id"/>
+               </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

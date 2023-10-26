@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="novalnet_redirect_failure" name="Novalnet Failure">
+      <script type="text/javascript">
+          alert('<t t-esc="failure_message"/>');
+          window.location.href = '/shop/payment';
+      </script>
+  </template>
+
+  <template id="novalnet_sale_order_portal_content" name="novalnet inherit sale portal " inherit_id="sale.sale_order_portal_content">
+    <xpath expr="//*[@id='terms']" position="before">
+      <t t-if="sale_order.transaction_ids">
+
+          <t t-set="payment_tx_id" t-value="sale_order.get_portal_last_transaction()"/>
+          <t t-set="order" t-value="sale_order"/>
+
+          <section t-if="payment_tx_id.provider_id.code == 'novalnet'" id="payment-info" class="mt-5">
+            <h3 class="">Payment information</h3>
+            <hr class="mt-0 mb-1"/>
+            <t t-call="payment_novalnet.novalnet_payment_information"></t>
+          </section>
+      </t>
+
+    </xpath>
+  </template>
+
+  <template id="novalnet_redirect_form">
+      <form t-att-action="redirect_url" method="post">
+      </form>
+  </template>
+
+    <template id="novalnet_payment_confirmation_table" name="Novalnet Payment Checkout" inherit_id="website_sale.confirmation">
+        <xpath expr="//*[@id='wrap']//table/tbody/tr/td[1]" position="inside">
+          - <t t-esc="payment_tx_id.novalnet_payment_method.display_as" />
+        </xpath>
+
+    </template>
+
+    <template id="novalnet_payment_information">
+
+        <t t-if="payment_tx_id.provider_reference">
+          <span style="font-weight:bold;">Payment type:</span>
+          <t t-out="payment_tx_id.novalnet_payment_method.display_as or ''"></t>
+          <p>Novalnet transaction ID: <t t-out="payment_tx_id.provider_reference"/>
+                    <span t-if="payment_tx_id.provider_id.state == 'test'" class="badge rounded-pill text-bg-warning ms-1">
+                        Test Mode
+                      </span>
+            </p>
+        </t>
+
+        <t t-if="payment_tx_id.state in ['done','authorized'] or payment_tx_id.novalnet_payment_method.payment_code == 'PREPAYMENT'">
+            <t t-if="payment_tx_id.novalnet_bank_account">
+                <p> Please transfer the amount of <strong t-field="payment_tx_id.amount" t-options="{'widget': 'monetary', 'display_currency': order.pricelist_id.currency_id}" /> to the following account <t t-if="payment_tx_id.state!='authorized' and payment_tx_id.novalnet_due_date "> on or before <t t-esc="payment_tx_id.novalnet_due_date" />  </t>.</p>
+
+                <ul>
+                  <li> <b>Account holder : </b> <t t-esc="payment_tx_id.novalnet_bank_account.account_holder" /> </li>
+                  <li> <b>BANK :</b> <t t-esc="payment_tx_id.novalnet_bank_account.bank_name" /> </li>
+                  <li> <b>Place :</b>  <t t-esc="payment_tx_id.novalnet_bank_account.bank_place" /> </li>
+                  <li> <b>IBAN :</b>  <t t-esc="payment_tx_id.novalnet_bank_account.iban" /> </li>
+                  <li> <b>BIC :</b>  <t t-esc="payment_tx_id.novalnet_bank_account.bic" /> </li>
+                </ul>
+                <p> Please use any of the following payment references when transferring the amount. This is necessary to match it with your corresponding order </p>
+                <ul>
+                  <li> <b>Payment Reference-1 :</b> <t t-esc="payment_tx_id.provider_reference" /> </li>
+                  <li> <b>Payment Reference-2 :</b> <t t-out="payment_tx_id.novalnet_invoice_ref or ''"/> </li>
+                </ul>
+              </t>
+              <t t-if="payment_tx_id.novalnet_nearest_store_ids">
+                <p> <t t-if="payment_tx_id.novalnet_due_date "> Slip expiry date (in days) : <t t-esc="payment_tx_id.novalnet_due_date" />  </t> </p>
+                <p>Store(s) near you</p>
+                <br/>
+                <t t-foreach="payment_tx_id.novalnet_nearest_store_ids" t-as="novalnet_nearest_store">
+                    <ul>
+                      <li> <t t-out="novalnet_nearest_store.store_name"/>, </li>
+                      <li> <t t-out="novalnet_nearest_store.street"/>, </li>
+                      <li> <t t-out="novalnet_nearest_store.city"/>, </li>
+                      <li> <t t-out="novalnet_nearest_store.zip"/>, </li>
+                      <li> <t t-out="novalnet_nearest_store.country_code"/> </li>
+                    </ul>
+                  <br/>
+                </t>
+              </t>
+              <t t-if="payment_tx_id.novalnet_multibanco_payment_reference and payment_tx_id.novalnet_multibanco_service_supplier_id">
+                <p>Please use the following payment reference details to pay the amount of <strong t-field="payment_tx_id.amount" t-options="{'widget': 'monetary', 'display_currency': order.pricelist_id.currency_id}" /> at a Multibanco ATM or through your internet banking</p>
+                <ul>
+                  <li> Partner Payment Reference : <t t-out="payment_tx_id.novalnet_multibanco_payment_reference or ''"/> </li>
+                  <li> Entity:  <t t-out="payment_tx_id.novalnet_multibanco_service_supplier_id or ''"/> </li>
+                </ul>
+              </t>
+        </t>
+    </template>
+
+    <template id="novalnet_payment_confirmation" name="Novalnet Payment Checkout" inherit_id="website_sale.payment_confirmation_status">
+      <xpath expr="//*[@class='card-header']" position="replace">
+          <div class="card-header">
+                <a role="button" groups="base.group_system" class="btn btn-sm btn-link text-white float-end" target="_blank" aria-label="Edit" title="Edit"
+                        t-att-href="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % ('payment.provider', payment_tx_id.provider_id.id, 'payment.action_payment_provider')">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <t t-if="payment_tx_id.state == 'pending'">
+                    <t t-out="payment_tx_id.provider_id.sudo().pending_msg"/>
+                </t>
+                <t t-if="payment_tx_id.state == 'done'">
+                    <span t-if='payment_tx_id.provider_id.sudo().done_msg' t-out="payment_tx_id.provider_id.sudo().done_msg"/>
+                </t>
+                <t t-if="payment_tx_id.state == 'done' and order.amount_total != payment_tx_id.amount">
+                    <span>Unfortunately your order can not be confirmed as the amount of your payment does not match the amount of your cart.
+                    Please contact the responsible of the shop for more information.</span>
+                </t>
+                <t t-if="payment_tx_id.state == 'cancel'">
+                    <t t-out="payment_tx_id.provider_id.sudo().cancel_msg"/>
+                </t>
+                <t t-if="payment_tx_id.state == 'authorized'">
+                    <t t-if="payment_tx_id.provider_id.sudo().auth_msg" t-out="payment_tx_id.provider_id.sudo().auth_msg"/>
+                    <span t-else="">Your payment has been authorized.</span>
+                </t>
+                <t t-if="payment_tx_id.state == 'error'">
+                    <span t-esc="payment_tx_id.state_message"/>
+                </t>
+            <t t-call="payment_novalnet.novalnet_payment_information"></t>
+          </div>
+      </xpath>
+    </template>
+
+    <template id="novalnet_checkout_inline_form" name="Novalnet Payment Checkout" inherit_id="payment.checkout">
+      <xpath expr="." position="inside">
+          <script src="https://cdn.novalnet.de/js/v2/NovalnetUtility.js"></script>
+      </xpath>
+      <xpath expr="//t/div[hasclass('o_payment_option_card')][1]" position="replace">
+          <t t-if="provider.code == 'novalnet'">
+              <t t-if="provider.novalnet_public_key and provider.novalnet_key_password and provider.novalnet_tariff_selection">
+                <t t-call="payment_novalnet.novalnet_payment_methods"/>
+              </t>
+          </t>
+          <t t-else="1">
+            <t t-call="payment_novalnet.flow_other_providers_check_out_payments"/>
+          </t>
+      </xpath>
+    </template>
+    <template id="flow_other_providers_check_out_payments" >
+      <div name="o_payment_option_card" class="card-body o_payment_option_card">
+        <label>
+            <!-- === Radio button === -->
+            <!-- Only shown if linked to the only payment option -->
+            <input name="o_payment_radio"
+                   type="radio"
+                   t-att-checked="provider.id == default_payment_option_id"
+                   t-att-class="'' if provider_count + token_count > 1 else 'd-none'"
+                   t-att-data-payment-option-id="provider.id"
+                   t-att-data-provider="provider.code"
+                   data-payment-option-type="provider"/>
+            <!-- === Provider name === -->
+            <span class="payment_option_name">
+                <b t-esc="provider.display_as or provider.name"/>
+            </span>
+            <!-- === "Test Mode" badge === -->
+            <span t-if="provider.state == 'test'"
+                  class="badge rounded-pill text-bg-warning ms-1">
+                Test Mode
+            </span>
+            <!-- === "Unpublished" badge === -->
+            <span t-if="not provider.is_published"
+                  class="badge rounded-pill text-bg-danger ms-1">
+                Unpublished
+            </span>
+            <!-- === Extra fees badge === -->
+            <t t-if="fees_by_provider.get(provider)">
+                <span class="badge rounded-pill text-bg-secondary ms-1">
+                    + <t t-esc="fees_by_provider.get(provider)"
+                         t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+                    Fees
+                </span>
+            </t>
+        </label>
+        <!-- === Payment icon list === -->
+        <t t-call="payment.icon_list"/>
+        <!-- === Help message === -->
+        <div t-if="not is_html_empty(provider.pre_msg)"
+             t-out="provider.pre_msg"
+             class="text-muted ms-3"/>
+    </div>
+    </template>
+
+    <template id="novalnet_payment_methods">
+        <t t-set="novalnet_payment_methods" t-value="provider._novalnet_get_available_payments(order, invoice, amount, currency, partner_id)"/>
+        <t t-foreach="novalnet_payment_methods" t-as="payment_method">
+            <div name="o_payment_option_card" t-attf-class="card-body o_payment_option_card">
+                <label>
+                    <input name="o_payment_radio" type="radio" t-att-data-provider="provider.code" t-att-data-provider-id="provider.id" t-att-data-payment-option-type="provider.code" t-att-data-payment-option-id="payment_method.id" t-att-data-payment-method="payment_method.payment_code" t-att-data-payment-flow="payment_method.flow" />
+                    <span class="payment_option_name">
+                        <b t-esc="payment_method.display_as"/>
+                    </span>
+                    <!-- === "Test Mode" badge === -->
+                    <span t-if="provider.state == 'test'"
+                          class="badge rounded-pill text-bg-warning ms-1">
+                        Test Mode
+                    </span>
+                    <!-- === "Unpublished" badge === -->
+                    <span t-if="not provider.is_published"
+                          class="badge rounded-pill text-bg-danger ms-1">
+                        Unpublished
+                    </span>
+
+                    <span t-if="provider.state == 'test' and not provider.is_published" class="badge rounded-pill text-bg-success ms-1">
+                        <b t-esc="provider.code"/>
+                    </span>
+
+                </label>
+                <t t-call="payment.icon_list">
+                    <t t-set="provider" t-value="payment_method"/>
+                </t>
+                <div t-if="provider.pre_msg" t-out="provider.pre_msg" class="text-muted ml-3"/>
+            </div>
+            <div t-attf-id="o_payment_{{provider.code}}_inline_form_{{payment_method.id}}" name="o_payment_inline_form" class="card-footer d-none">
+              <div class="clearfix" t-if="payment_method.payment_code == 'CREDITCARD' and provider.novalnet_client_key">
+                <t t-call="payment_novalnet.novalnet_creditcard"></t>
+              </div>
+              <div class="clearfix" t-if="payment_method.payment_code == 'DIRECT_DEBIT_SEPA'">
+                <t t-call="payment_novalnet.novalnet_sepa"></t>
+              </div>
+              <div class="clearfix" t-if="payment_method.payment_code == 'GUARANTEED_DIRECT_DEBIT_SEPA'">
+                <t t-call="payment_novalnet.novalnet_guranteed_sepa"></t>
+              </div>
+              <div class="clearfix" t-if="payment_method.payment_code == 'GUARANTEED_INVOICE'">
+                <t t-call="payment_novalnet.novalnet_guranteed_invoice"></t>
+              </div>
+              <div class="card alert-info" t-if="payment_method.description">
+                    <div class="card-header">
+                                <span><p><t t-raw="payment_method.description or ''"></t></p></span>
+                      </div>
+              </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="novalnet_tokenize">
+      <label t-if="show_tokenize_input[provider.id]" >
+            <input name="o_payment_save_as_token" type="checkbox"/>
+                      Save my payment details
+      </label>
+    </template>
+
+    <template id="novalnet_creditcard">
+      <div t-attf-id="demo-container-cc-{{provider.code}}" t-att-data-partner-name="partner.name" t-att-data-token="provider.novalnet_client_key" t-att-data-3d="payment_method.enforce_3d" >
+        <div class="row">
+              <!-- <iframe id="novalnet_iframe" frameborder="0" scrolling="no"></iframe> -->
+              <iframe frameborder="0" scrolling="no" id="novalnet_iframe" src="https://secure.novalnet.de/v2/cc/0f84e6cf6fe1b93f1db8198aa2eae719" referrerpolicy="origin" ></iframe>
+
+        </div>
+        <t t-call="payment_novalnet.novalnet_tokenize"></t>
+      </div>
+    </template>
+
+    <template id="novalnet_sepa">
+      <div t-attf-id="demo-container-sepa-{{provider.code}}" t-att-data-partner-name="partner.name" t-att-data-token="provider.novalnet_client_key">
+        <div class="row">
+              <div class="col mt-0 mb-0">
+                <label for="customer_input" class="mt-0">
+                    <small><b>IBAN</b></small>
+                </label>
+                <input class="form-control" type="text" id="novalnet-DIRECT_DEBIT_SEPA-iban" name="novalnet-DIRECT_DEBIT_SEPA-iban" placeholder="DE00 0000 0000 0000 0000 00" onkeypress="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-DIRECT_DEBIT_SEPA-bic-field');" onchange="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-DIRECT_DEBIT_SEPA-bic-field');"  onkeyup="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-DIRECT_DEBIT_SEPA-bic-field');" autocomplete="OFF" style="text-transform:uppercase;" t-att-required="true"/>
+            </div>
+        </div>
+        <div class="row" id = "novalnet-DIRECT_DEBIT_SEPA-bic-field" style="display: none;">
+              <div class="col mt-0 mb-0">
+                <label for="customer_input" class="mt-0">
+                    <small><b>BIC</b></small>
+                </label>
+                <input class="form-control" type="text" name="novalnet-DIRECT_DEBIT_SEPA-bic" id="novalnet-sepa-bic" placeholder="XXXX XX XX XXX" value="" onkeypress="this.classList.remove('is-invalid');return NovalnetUtility.formatBic(event);" onchange="this.classList.remove('is-invalid');return NovalnetUtility.formatBic(event);" autocomplete="OFF" style="text-transform:uppercase;"/>
+            </div>
+        </div>
+        <t t-call="payment_novalnet.novalnet_tokenize"></t>
+      </div>
+    </template>
+
+    <template id="novalnet_guranteed_sepa">
+          <div t-attf-id="demo-container-gu-sepa-{{provider.code}}" t-att-data-partner-name="partner.name" t-att-data-token="provider.novalnet_client_key">
+            <div class="row">
+                  <div class="col mt-0 mb-0">
+                    <label for="customer_input" class="mt-0">
+                        <small><b>IBAN</b></small>
+                    </label>
+                    <input class="form-control" type="text" id="novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-iban" name="novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-iban" placeholder="DE00 0000 0000 0000 0000 00" onkeypress="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-bic-field');" onchange="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-bic-field');"  onkeyup="this.classList.remove('is-invalid');return NovalnetUtility.formatIban(event,'novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-bic-field');" autocomplete="OFF" style="text-transform:uppercase;" t-att-required="true"/>
+                </div>
+            </div>
+            <div class="row" id = "novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-bic-field" style="display: none;">
+                  <div class="col mt-0 mb-0">
+                    <label for="customer_input" class="mt-0">
+                        <small><b>BIC</b></small>
+                    </label>
+                    <input class="form-control" type="text" name="novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-bic" id="novalnet-novalnet_guranteed_sepa-bic" placeholder="XXXX XX XX XXX" value="" onkeypress="this.classList.remove('is-invalid');return NovalnetUtility.formatBic(event);" onchange="this.classList.remove('is-invalid');return NovalnetUtility.formatBic(event);" autocomplete="OFF" style="text-transform:uppercase;"/>
+                </div>
+            </div>
+            <div t-if="partner and not partner.company_name"  class="row" id = "novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-dob-field">
+                  <div class="col mt-0 mb-0">
+                    <label for="customer_input" class="mt-0">
+                        <small><b>D.O.B</b></small>
+                    </label>
+                    <input type="text" class="form-control" name="novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-dob" id="novalnet-GUARANTEED_DIRECT_DEBIT_SEPA-dob" placeholder="DD.MM.YYYY" value="" onkeydown="return NovalnetUtility.isNumericBirthdate( this, event )" autocomplete="OFF"/>
+                </div>
+            </div>
+            <t t-call="payment_novalnet.novalnet_tokenize"></t>
+          </div>
+    </template>
+    <template id="novalnet_guranteed_invoice">
+          <div t-attf-id="demo-container-invoice-{{provider.code}}" t-att-data-partner-name="partner.name" t-att-data-token="provider.novalnet_client_key">
+            <div t-if="partner and not partner.company_name"  class="row" id = "novalnet-GUARANTEED_INVOICE-dob-field">
+                  <div class="col mt-0 mb-0">
+                    <label for="customer_input" class="mt-0">
+                        <small><b>D.O.B</b></small>
+                    </label>
+                    <input type="text" class="form-control" name="novalnet-GUARANTEED_INVOICE-dob" id="novalnet-GUARANTEED_INVOICE-dob" placeholder="DD.MM.YYYY" value="" onkeydown="return NovalnetUtility.isNumericBirthdate( this, event )" autocomplete="OFF"/>
+                </div>
+            </div>
+          </div>
+    </template>
+
+</odoo>

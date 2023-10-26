@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+	<record id="payment_provider_novalnet" model="payment.provider">
+		<field name="name">Novalnet</field>
+		<field name="display_as">Novalnet</field>
+		<field name="code">novalnet</field>
+		<field name="allow_tokenization">True</field>
+		<field name="redirect_form_view_id" ref="novalnet_redirect_form"/>
+	</record>
+
+	<record id="novalnet_sepa_account_payment_term_2days" model="account.payment.term">
+		<field name="name">Novalnet sepa due Days</field>
+		<field name="note">Novalnet sepa payment terms: 2 Days</field>
+		<field name="line_ids" eval="[Command.clear(), Command.create({'value': 'balance', 'value_amount': 0.0, 'days': 2})]"/>
+	</record>
+
+	<record id="novalnet_invoice_account_payment_term_14days" model="account.payment.term">
+		<field name="name">Novalnet invoice payment due Days</field>
+		<field name="note">Novalnet invoice payment terms: 14 Days</field>
+		<field name="line_ids" eval="[Command.clear(), Command.create({'value': 'balance', 'value_amount': 0.0, 'days': 14})]"/>
+	</record>
+	<record id="novalnet_b2b_invoice_account_payment_term_30days" model="account.payment.term">
+		<field name="name">Novalnet invoice payment due - 30 Days </field>
+		<field name="note">Novalnet invoice payment terms: 30 Days</field>
+		<field name="line_ids" eval="[Command.clear(), Command.create({'value': 'balance', 'value_amount': 0.0, 'days': 30})]"/>
+	</record>
+
+</odoo>
