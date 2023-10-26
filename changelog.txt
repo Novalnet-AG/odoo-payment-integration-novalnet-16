@@ -1,0 +1,4 @@
+*** Changelog ***
+
+= 3.0.0   - 02.01.2023
+* New Release: Payment module built with seamless payment experience with new v2 API structure and enhanced features
