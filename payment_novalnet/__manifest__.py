@@ -17,9 +17,9 @@
         'security/ir.model.access.csv',
         'data/mail_template_data.xml',
         'data/payment_provider_data.xml',
-        'wizards/payment_link_wizard_views.xml',
     ],
     'application': True,
+    'post_init_hook': 'post_init_hook',
     'uninstall_hook': 'uninstall_hook',
     'assets': {
         'web.assets_frontend': [
